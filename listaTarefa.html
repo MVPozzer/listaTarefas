@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <title>Lista de Tarefas</title>
+  </head>
+  <header class="cabecalho">
+    <div class="container">
+      <div class="row">
+        <h1 class="nav-item">Lista de Tarefas</h1>
+      </div>
+    </div>
+  </header>
+  <body>
+    <div id="app">
+      <h2>Olá, esta é sua Lista de Tarefas</h2>
+      <input
+        type="text"
+        id="taskInput"
+        placeholder="Adicione uma nova tarefa"
+      />
+      <button type="button" class="btn btn-success" onclick="addTask()">
+        Adicionar
+      </button>
+      <ul id="taskList"></ul>
+    </div>
+
+    <style>
+      .nav-item {
+        color: aliceblue;
+        text-align: center;
+      }
+
+      .cabecalho {
+        background-color: #121214;
+        margin-bottom: 5%;
+      }
+
+      body {
+        background-color: #f2f5f7;
+        font-family: "Open Sans", Arial, sans-serif;
+      }
+
+      #app {
+        max-width: 40%;
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      
+
+      #taskInput {
+        border-radius: 5px;
+        margin-top: 5%;
+        
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        padding: 2%;
+        border-bottom: 1px solid black;
+        margin-top: 2%;
+        justify-content: space-between;
+      }
+
+      button {
+        background-color: #ff0000;
+        color: #fff;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+        margin-left: 2%;
+      }
+
+      .buttonEdit {
+        background-color: yellow;
+        color: #fff;
+        border-radius: 5px;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+    </style>
+
+    <script>
+      const taskInput = document.getElementById("taskInput");
+      const taskList = document.getElementById("taskList");
+
+      function addTask() {
+        const taskText = taskInput.value.trim();
+        if (taskText !== "") {
+          const li = document.createElement("li");
+          li.innerHTML = `
+        <input type="checkbox">
+        <span>${taskText}</span>
+        <button onclick="removeTask(this)">Remover</button>
+      `;
+          taskList.appendChild(li);
+          taskInput.value = "";
+        }
+      }
+
+      function removeTask(button) {
+        const li = button.parentElement;
+        taskList.removeChild(li);
+      }
+    </script>
+  </body>
+</html>
